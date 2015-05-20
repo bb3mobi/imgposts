@@ -1,0 +1,21 @@
+services:
+    bb3mobi.imgposts.listener:
+        class: bb3mobi\imgposts\event\listener
+        arguments:
+            - @template
+            - @config
+            - @dbal.conn
+            - %core.root_path%
+            - @bb3mobi.imgposts.helper
+        tags:
+            - { name: event.listener }
+    bb3mobi.imgposts.helper:
+        class: bb3mobi\imgposts\core\helper
+        arguments:
+            - @template
+            - @config
+            - @user
+            - @auth
+            - @dbal.conn
+            - %core.root_path%
+            - %core.php_ext%

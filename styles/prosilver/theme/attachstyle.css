@@ -1,0 +1,69 @@
+#scroll-crawl {
+	margin-top: 2px;
+	padding-bottom: 1px;
+	opacity: 0.9;
+}
+
+#scroll-crawl h3 { margin-bottom: 0; }
+
+#scroll-cr {
+	padding: 0;
+	margin: 0 auto;
+}
+
+#scroll-jq {
+	max-width: 1200px;
+	margin-top: -12px; /* Top -12 ??? */
+	position: relaive;
+	padding: 0;
+	left: 0;
+	margin: 0 auto;
+}
+
+.scroll-img, .caroufredsel_wrapper {
+	width: 100%!important;
+	overflow: hidden;
+	text-align: center;
+}
+
+.scroll-img li {
+	border: 2px solid #eee;
+	list-style-type: none;
+	display: inline-block;
+	margin: 2px;
+	border-radius: 4px;
+	box-shadow: 0 0 4px 0 #000000;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-box-shadow: 0 0 4px 0 #000000;
+	-moz-box-shadow: 0 0 4px 0 #000000;
+}
+
+.scroll-img li:hover, .attach_image:hover {
+	border-color: #73BCD1;
+}
+
+.scroll-img a {
+	display: inline-block;
+	opacity: 1;
+}
+
+.prev_next_button {
+	float: right;
+	margin-top: -8px;
+	position: relative;
+}
+
+.attach_image {
+	border: 2px solid #fff;
+	display: inline-block;
+	margin: 0 4px;
+	border-radius: 4px;
+	box-shadow: 0 0 4px 0 #000000;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-box-shadow: 0 0 4px 0 #000000;
+	-moz-box-shadow: 0 0 4px 0 #000000;
+}

@@ -1,0 +1,16 @@
+<!-- IF not IMAGES_BOTTOM_TYPE and (LAST_IMAGES_ATACHMENT == 1 or LAST_IMAGES_ATACHMENT == 3) -->
+<div id="scroll-crawl" class="panel">
+	<div class="inner"><!-- IF IMAGES_ATT_CAROUSEL -->
+		<div class="prev_next_button">
+			<a id="prev2" href="#" class="button2">&lt;</a> <a id="next2" href="#" class="button2">&gt;</a></div><!-- ENDIF -->
+		<h3>{L_IMAGES_ATACHMENT}</h3>
+		<div id="scroll-cr">
+		<ul id="scroll-jq" class="scroll-img" style="height:{IMAGES_ATTACH_SIZE}px;">
+		<!-- BEGIN attach_img -->
+			<li><a href="{attach_img.ATTACH_POST}"><img src="{attach_img.ATTACH_IMG}" title="{attach_img.TOPIC_TITLE}" alt="{attach_img.ATTACH_ALT}" /></a></li>
+		<!-- END attach_img -->
+		</ul>
+		</div>
+	</div>
+</div>
+<!-- ENDIF -->

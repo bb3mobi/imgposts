@@ -1,0 +1,36 @@
+{
+    "name": "bb3mobi/imgposts",
+    "type": "phpbb-extension",
+    "description": "Images from posts",
+    "homepage": "http://bb3.mobi",
+    "keywords": ["img", "images", "attachment", "pics", "topic", "post", "forum"],
+    "version": "1.0.2",
+    "time": "2014-11-9",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Anvar",
+            "homepage": "http://apwa.ru",
+            "role": "Development"
+        },
+        {
+            "name": "Fred Heusschen",
+            "homepage": "http://www.frebsite.nl",
+            "role": "jQuery carouFredSel 5.2.2 (c) 2011"
+        },
+        {
+            "name": "John Davenport Scheuer",
+            "homepage": "http://www.dynamicdrive.com/forums/",
+            "role": "Text and/or Image Crawler Script ©2009"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "extra": {
+        "display-name": "Images from posts",
+        "soft-require": {
+        "phpbb/phpbb": "3.1.*@dev"
+        }
+    }
+}
