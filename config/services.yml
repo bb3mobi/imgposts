@@ -13,9 +13,27 @@ services:
         class: bb3mobi\imgposts\core\helper
         arguments:
             - @template
+            - @log
             - @config
             - @user
             - @auth
             - @dbal.conn
             - %core.root_path%
             - %core.php_ext%
+
+    bb3mobi.imgposts.cron.task.tidy_images:
+        class: bb3mobi\imgposts\cron\task\tidy_images
+        arguments:
+            - @config
+            - @log
+            - @user
+            - @template
+            - @auth
+            - @dbal.conn
+            - %core.root_path%
+            - %core.php_ext%
+
+        calls:
+            - [set_name, [cron.task.core.bb3mobi_tidy_images]]
+        tags:
+            - { name: cron.task }

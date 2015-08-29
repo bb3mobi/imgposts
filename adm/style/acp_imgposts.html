@@ -2,6 +2,63 @@
 <a id="maincontent"></a>
 <h1>{L_TITLE}</h1>
 <p>{L_TITLE_EXPLAIN}</p>
+<!-- IF S_MANAGE -->
+<fieldset>
+	<legend>{L_CLEAR_CACHE}</legend>
+	<form id="thumb" method="post" action="{U_ACTION}">
+		<dl>
+			<dt><label for="clear_old">{L_CLEAR_OLD}</label><br><span class="responsive-hide">&nbsp;</span></dt>
+			<dd><input class="button2" id="clear_old" name="clear_old" value="{L_RUN}" type="submit"></dd>
+		</dl>
+		<dl>
+			<dt><label for="clear_all">{L_CLEAR_ALL}</label><br><span class="responsive-hide">&nbsp;</span></dt>
+			<dd><input class="button2" id="clear_all" name="clear_all" value="{L_RUN}" type="submit"></dd>
+		</dl>
+	{S_FORM_TOKEN}
+	</form>
+</fieldset>
+
+<fieldset>
+	<legend>{L_CLEAR_CACHE_BY_CRON}</legend>
+	<form id="cron" method="post" action="{U_ACTION}">
+		<dl>
+			<dt><label for="cron">{L_CRON_SET}{L_COLON}</label></dt>
+			<dd>
+				<label><input type="radio" class="radio" id="cron" name="cron" value="1" {S_CHECKED_ENABLE} /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="cron" value="0" {S_CHECKED_DISABLE} /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="prune">{L_CRON_PRUNE}{L_COLON}</label></dt>
+			<dd><input id="prune" maxlength="2" min="1" max="7" name="prune" value="{PRUNE_DAYS}" type="number">&nbsp;{L_DAYS}</dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</form>
+</fieldset>
+<fieldset>
+	<legend>{L_CREATE_THUMBS}</legend>
+	<form id="create" method="post" action="{U_ACTION}">
+		<dl>
+			<dt><label for="create">{L_NUM_THUMBS}{L_COLON}</label><br /><span>{L_NUM_THUMBS_EXPLAIN}</span></dt>
+			<dd><input id="create" maxlength="2" min="1" max="40" name="num" value="{NUM}" type="number"></dd>
+		</dl>
+		<dl>
+			<dt><label for="forum">{L_LOOK_UP_FORUM}{L_COLON}</label><br /><span>{L_FORUMS_EXPLAIN}</span></dt>
+			<dd><select id="forum" name="forum_id" size="10">{S_FORUM_OPTIONS}</select></dd>
+		</dl>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="create" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+		{S_FORM_TOKEN}
+	</form>
+</fieldset>
+
+<!-- ELSE -->
 <span>{L_TITLE_DESCRIPTION}</span><br />
 <!-- IF S_ERROR --><div class="errorbox"><h3>{L_WARNING}</h3><p>{ERROR_MSG}</p></div><!-- ENDIF -->
 <form id="config_exlinks" method="post" action="{U_ACTION}">
@@ -26,4 +83,5 @@
 	{S_FORM_TOKEN}
 </fieldset>
 </form>
+<!-- ENDIF -->
 <!-- INCLUDE overall_footer.html -->
