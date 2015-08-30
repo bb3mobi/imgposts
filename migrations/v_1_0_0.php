@@ -13,7 +13,7 @@ class v_1_0_0 extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['imgposts_version']) && version_compare($this->config['imgposts_version'], '1.0.0', '>=');
+		return;
 	}
 
 	static public function depends_on()
@@ -35,63 +35,19 @@ class v_1_0_0 extends \phpbb\db\migration\migration
 			array('config.add', array('last_images_attachment_count_min', '6')),
 			array('config.add', array('last_images_attachment_count', '9')),
 			array('config.add', array('last_images_attachment_size', '120')),
-
 			array('config.add', array('images_new_path', 'ext/bb3mobi/imgposts/images/')),
 			array('config.add', array('images_copy_bottom', 'bb3.mobi')),
 			array('config.add', array('images_height_width', '1')),
-	
 			array('config.add', array('first_images_from_topic', '0')),
 			array('config.add', array('first_images_forum_ignore', '')),
 			array('config.add', array('first_images_size', '50')),
 			array('config.add', array('first_images_float', '0')),
+			array('config.add', array('last_images_img_ignore', '0')),
 			// Current version
 			array('config.add', array('imgposts_version', '1.0.0')),
 			// Add ACP modules
 			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_IMG_FROM_POSTS')),
 			array('module.add', array('acp', 'ACP_IMG_FROM_POSTS', array(
-				'module_basename'	=> '\bb3mobi\imgposts\acp\imgposts_module',
-				'module_langname'	=> 'ACP_IMG_POSTS',
-				'module_mode'		=> 'config_imgposts',
-				'module_auth'		=> 'ext_bb3mobi/imgposts && acl_a_board',
-			))),
-		);
-	}
-
-	public function revert_data()
-	{
-		return array(
-			// remove from configs
-			array('config.remove', array('last_images_attachment')),
-			array('config.remove', array('last_images_attachment_all')),
-			array('config.remove', array('last_images_attachment_ignore')),
-			array('config.remove', array('last_images_attachment_ignore_topic')),
-			array('config.remove', array('last_images_attachment_bottom')),
-			array('config.remove', array('last_images_attachment_top_invert')),
-			array('config.remove', array('last_images_attachment_carousel')),
-			array('config.remove', array('last_images_attachment_count')),
-			array('config.remove', array('last_images_attachment_count_min')),
-			array('config.remove', array('last_images_attachment_size')),
-			array('config.remove', array('last_images_img')),
-			array('config.remove', array('last_images_img_ignore')),
-			array('config.remove', array('last_images_img_bottom')),
-			array('config.remove', array('last_images_carusel')),
-			array('config.remove', array('last_images_img_count')),
-			array('config.remove', array('last_images_img_size')),
-
-			array('config.remove', array('images_new_path')),
-			array('config.remove', array('images_copy_bottom')),
-			array('config.remove', array('images_height_width')),
-
-			array('config.remove', array('first_images_from_topic')),
-			array('config.remove', array('first_images_forum_ignore')),
-			array('config.remove', array('first_images_size')),
-			array('config.remove', array('first_images_float')),
-			// Current version
-			array('config.remove', array('imgposts_version')),
-
-			// remove from ACP modules
-			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_IMG_FROM_POSTS')),
-			array('module.remove', array('acp', 'ACP_IMG_FROM_POSTS', array(
 				'module_basename'	=> '\bb3mobi\imgposts\acp\imgposts_module',
 				'module_langname'	=> 'ACP_IMG_POSTS',
 				'module_mode'		=> 'config_imgposts',
