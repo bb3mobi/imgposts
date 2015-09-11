@@ -24,5 +24,3 @@ class imgposts_info
 		);
 	}
 }
-
-?>

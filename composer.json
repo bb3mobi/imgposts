@@ -4,7 +4,7 @@
     "description": "Images from posts",
     "homepage": "http://bb3.mobi",
     "keywords": ["img", "images", "attachment", "pics", "topic", "post", "forum"],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "time": "2014-11-9",
     "license": "GPL-2.0",
     "authors": [

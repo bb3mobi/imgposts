@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @copyright (c) 2014 Anvar (http://bb3.mobi), c) 2015 Sheer
+* @copyright (c) 2014 Anvar (http://bb3.mobi), (c) 2015 Sheer
 * @package Images from posts v 1.0.3
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -106,6 +106,7 @@ class helper
 			' . $sql_where_topic . '
 			' . $sql_forum . '
 			AND p.post_visibility = 1
+			AND p.post_id = t.topic_first_post_id
 			ORDER BY p.post_time DESC';
 		$result = $this->db->sql_query_limit($sql, $this->config['last_images_attachment_count']);
 		$att_count = $create_count = 0;
@@ -252,6 +253,7 @@ class helper
 				' . $sql_where . '
 				AND (mimetype = "image/jpeg" OR mimetype = "image/png" OR mimetype = "image/gif")
 				AND a.topic_id = t.topic_id
+				AND t.topic_first_post_id = a.post_msg_id
 				GROUP BY a.post_msg_id DESC';
 			$result = $this->db->sql_query_limit($sql, $this->config['last_images_attachment_count']);
 
@@ -296,7 +298,8 @@ class helper
 	}
 
 	public function img_resize($file, $resize, $thumbnail_file, $copy = false)
-	{
+	{	/* resize images and width = height functions
+		phpBB 2.0.23 album thumbnail mod 2008 Anvar, apwa.ru */
 		$size = @getimagesize($file);
 		if (!count($size) || !isset($size[0]) || !isset($size[1]))
 		{
@@ -415,6 +418,8 @@ class helper
 	public function clear_cache()
 	{
 		// Search images
+		$current_posted = array(); // ver 1.0.5
+
 		$chars = '[img:';
 		$pattern = array('.jpg', '.jpg' , '.jpg');
 		$replacement = array('/source', '/mini' , '/medium');
@@ -475,6 +480,8 @@ class helper
 		sort($files);
 
 		// Search attachments
+		$attacments = array(); // ver 1.0.5
+
 		$sql = 'SELECT a.attach_id, a.post_msg_id, a.extension, p.post_id, p.topic_id, p.post_time, p.post_visibility
 			FROM ' . ATTACHMENTS_TABLE . ' a, ' . POSTS_TABLE . ' p, ' . TOPICS_TABLE . ' t
 			WHERE a.post_msg_id = p.post_id

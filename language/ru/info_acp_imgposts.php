@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_IMG_FROM_POSTS'			=> 'Изображения из сообщений',
 	'ACP_IMG_POSTS'					=> 'Управление отображением',
-	'ACP_IMG_POSTS_EXPLAIN'			=> '<a href="http://bb3.mobi">Img from Posts</a> (c) <a href="http://apwa.ru">Anvar</a>',
+	'ACP_IMG_POSTS_EXPLAIN'			=> '<a href="http://bb3.mobi/forum/viewtopic.php?t=29" title="Последние изображения форума">Images from Posts</a> (c) Anvar - 2015',
 	'ACP_IMG_POSTS_DESCRIPTION'		=> 'Здесь вы можете настроить отображение изображений, размещённых на форуме.',
 	'ACP_IMG_MANAGE_POSTS'			=> 'Управление миниатюрами',
 	'ACP_IMG_MANAGE_POSTS_EXPLAIN'	=> 'Здесь вы можете удалить все или только неиспользуемые миниатюры, а также настроить параметры автоматической очистки кеша миниатюр.',

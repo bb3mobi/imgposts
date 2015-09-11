@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 	'ACP_IMG_MANAGE_POSTS_EXPLAIN'	=> 'Here you can delete all or unused thumbnails, as well as configure the automatic deletion of the thumbnails cache.',
 	'ACP_IMG_POSTS'					=> 'Display Settings',
 	'ACP_IMG_POSTS_DESCRIPTION'		=> 'Here you can customize display of images posted in forum.',
-	'ACP_IMG_POSTS_EXPLAIN'			=> 'Configure the image display settings<br />Extension <a href="http://bb3.mobi">Img from Posts</a> by (c) <a href="http://apwa.ru">Anvar</a>',
+	'ACP_IMG_POSTS_EXPLAIN'			=> 'Configure the image display settings<br />Extension <a href="http://bb3.mobi/forum/viewtopic.php?t=29">Images from Posts</a> (c) Anvar Stybaev',
 	'CLEAR_ALL'						=> 'Remove all thumbnails',
 	'CLEAR_ALL_EMPTY'				=> 'The folder thumbnails cache is empty',
 	'CLEAR_ALL_ERROR'				=> 'Unable to clear the thumbnails cache (thumbnail folder may not exist)',

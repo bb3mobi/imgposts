@@ -2,7 +2,7 @@
 /**
 *
 * @package Images from posts
-* @copyright (c) 2014 Anvar [http://bb3.mobi]
+* @copyright (c) 2014 Anvar (http://bb3.mobi), (c) 2015 Sheer(http://phpbbguru.net)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -41,7 +41,8 @@ class imgposts_module
 				'S_FORUM_OPTIONS'		=> $s_forum_options,
 				)
 			);
-			$create = (isset($_POST['create'])) ? true : false;
+
+			$create = $request->is_set_post('create');
 			if($create)
 			{
 				if($forum_id)
@@ -69,8 +70,8 @@ class imgposts_module
 				}
 			}
 
-			$clear_all = (isset($_POST['clear_all'])) ? true : false;
-			$clear_old = (isset($_POST['clear_old'])) ? true : false;
+			$clear_all = $request->is_set_post('clear_all');
+			$clear_old = $request->is_set_post('clear_old');
 			if($clear_all)
 			{
 				if (!check_form_key('bb3mobi/imgposts'))
@@ -158,7 +159,7 @@ class imgposts_module
 		}
 		else
 		{
-			$submit = (isset($_POST['submit'])) ? true : false;
+			$submit = $request->is_set_post('submit');
 
 			$display_vars = array(
 				'title'	=> 'ACP_IMG_POSTS',
@@ -197,7 +198,7 @@ class imgposts_module
 			}
 
 			$this->new_config = $config;
-			$cfg_array = (isset($_REQUEST['config'])) ? utf8_normalize_nfc(request_var('config', array('' => ''), true)) : $this->new_config;
+			$cfg_array = ($request->is_set('config')) ? utf8_normalize_nfc($request->variable('config', array('' => ''), true)) : $this->new_config;
 			$error = array();
 
 			// We validate the complete config if wished
@@ -381,4 +382,3 @@ class imgposts_module
 	}
 }
 
-?>
