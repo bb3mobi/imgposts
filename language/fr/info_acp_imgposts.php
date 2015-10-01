@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'ACP_IMG_MANAGE_POSTS_EXPLAIN'	=> 'Supprime toutes les miniatures ou celles inutilisées et configure la suppression automatique du cache des miniatures.',
 	'ACP_IMG_POSTS'					=> 'Paramètres d’affichage',
 	'ACP_IMG_POSTS_DESCRIPTION'		=> 'Sur cette page il est possible de personnaliser l’affichage des images des messages du forum.',
-	'ACP_IMG_POSTS_EXPLAIN'			=> 'Permet de configurer les paramètres d’affichage des images des messages de l’extension <a href="http://bb3.mobi">Img from Posts</a> par (c) <a href="http://apwa.ru">Anvar</a>.',
+	'ACP_IMG_POSTS_EXPLAIN'			=> 'Permet de configurer les paramètres d’affichage des images des messages de l’extension <a href="http://bb3.mobi/forum/viewtopic.php?t=29">Images from Posts</a> (c) Anvar Stybaev.',
 	'CLEAR_ALL'						=> 'Supprimer toutes les miniatures',
 	'CLEAR_ALL_EMPTY'				=> 'Le répertoire du cache des miniatures est vide.',
 	'CLEAR_ALL_ERROR'				=> 'Impossible de purger le cache des miniatures (le répertoire des miniatures pourrait ne pas exister).',
