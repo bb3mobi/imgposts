@@ -325,7 +325,6 @@ class helper
 				default:
 					return;
 			}
-			copy($file, $thumbnail_file);
 			return;
 		}
 //<--
