@@ -43,14 +43,17 @@ class listener implements EventSubscriberInterface
 
 	public function last_index_images($event)
 	{
-		if ($this->config['images_attachment'] == 1 || $this->config['images_attachment'] == 2)
+		if ($this->config['last_images_attachment'] == 1 || $this->config['last_images_attachment'] == 3)
 		{
-			$this->helper->last_images_attachment();
-		}
+			if ($this->config['images_attachment'] == 1 || $this->config['images_attachment'] == 2)
+			{
+				$this->helper->last_images_attachment();
+			}
 
-		if ($this->config['images_attachment'] == 0 || $this->config['images_attachment'] == 2)
-		{
-			$this->helper->last_images();
+			if ($this->config['images_attachment'] == 0 || $this->config['images_attachment'] == 2)
+			{
+				$this->helper->last_images();
+			}
 		}
 	}
 
@@ -80,7 +83,7 @@ class listener implements EventSubscriberInterface
 
 	public function first_images_thumb_generate($event)
 	{
-		if (!empty($this->config['first_images_from_topic']) && $this->config['last_images_attachment'])
+		if ($this->config['first_images_from_topic'])
 		{
 			$rowset = $event['rowset'];
 			$ar = array();
@@ -92,7 +95,7 @@ class listener implements EventSubscriberInterface
 					$topic_ids = array();
 				}
 
-				if($this->config['images_attachment'] == 0 || $this->config['images_attachment'] == 2)
+				if ($this->config['images_attachment'] == 0 || $this->config['images_attachment'] == 2)
 				{
 					$topic_ids[] = $topic_id;
 				}
