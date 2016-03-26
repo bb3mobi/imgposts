@@ -361,7 +361,7 @@ class imgposts_module
 	/**
 	* Select display mode
 	*/
-	function  select_display_mode($selected_value, $value)
+	function select_display_mode($selected_value, $value)
 	{
 		global $user;
 

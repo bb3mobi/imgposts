@@ -18,8 +18,8 @@ class imgposts_info
 			'title'		=> 'ACP_IMG_FROM_POSTS',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'config_imgposts'		=> array('title' => 'ACP_IMG_POSTS', 'auth' => 'ext_bb3mobi/imgposts && acl_a_board', 'cat' => array('ACP_IMG_FROM_POSTS')),
-				'manage_imgposts'		=> array('title' => 'ACP_IMG_MANAGE_POSTS', 'auth' => 'ext_bb3mobi/imgposts && acl_a_board', 'cat' => array('ACP_IMG_FROM_POSTS')),
+				'config_imgposts'	=> array('title' => 'ACP_IMG_POSTS', 'auth' => 'ext_bb3mobi/imgposts && acl_a_board', 'cat' => array('ACP_IMG_FROM_POSTS')),
+				'manage_imgposts'	=> array('title' => 'ACP_IMG_MANAGE_POSTS', 'auth' => 'ext_bb3mobi/imgposts && acl_a_board', 'cat' => array('ACP_IMG_FROM_POSTS')),
 			),
 		);
 	}
