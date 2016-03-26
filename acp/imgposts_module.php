@@ -171,7 +171,7 @@ class imgposts_module
 						'last_images_attachment_ignore_topic'	=> array('lang' => 'IMAGES_IGNORE_TOPIC',	'validate' => 'string',		'type' => 'text:40:40', 'explain' => true),
 						'last_images_gallery'					=> array('lang' => 'IMAGES_PHPBB_GALLERY',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
 						'last_images_attachment_all'			=> array('lang' => 'IMAGES_ATTACHMENT_ALL',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
-						'last_images_attachment_bottom'			=> array('lang' => 'IMAGES_BOTTOM_TYPE',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false),
+						'last_images_attachment_bottom'			=> array('lang' => 'IMAGES_BOTTOM_TYPE',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
 						'last_images_attachment_top_invert'		=> array('lang' => 'IMAGES_TOP_INVERT',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
 						'last_images_attachment_carousel'		=> array('lang' => 'IMAGES_CAROUSEL_TYPE',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
 						'last_images_attachment_count'			=> array('lang' => 'IMAGES_COUNT_IMG',		'validate' => 'int:4:40',	'type' => 'number:4:40', 'explain' => true),

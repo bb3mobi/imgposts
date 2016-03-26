@@ -484,7 +484,7 @@ class helper
 		$attacments = array(); // ver 1.0.5
 
 		$sql = 'SELECT a.attach_id, a.post_msg_id, a.extension, p.post_id, p.topic_id, p.post_time, p.post_visibility
-			FROM ' . ATTACHMENTS_TABLE . ' a, ' . POSTS_TABLE . ' p, ' . TOPICS_TABLE . ' t
+			FROM ' . ATTACHMENTS_TABLE . ' a, ' . POSTS_TABLE . ' p
 			WHERE a.post_msg_id = p.post_id
 			AND (mimetype = "image/jpeg" OR mimetype = "image/png" OR mimetype = "image/gif")
 			AND p.post_visibility = 1
