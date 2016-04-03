@@ -69,3 +69,7 @@
 	-webkit-box-shadow: 0 0 4px 0 #000000;
 	-moz-box-shadow: 0 0 4px 0 #000000;
 }
+
+.attach_image img {
+	display: block;
+}
