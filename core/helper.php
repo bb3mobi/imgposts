@@ -367,10 +367,11 @@ class helper
 		$thumbnail2 = imagecreatetruecolor($thumbnail_width, $thumbnail_height);
 		imagecopyresampled($thumbnail2, $image, 0, 0, 0, 0, $thumbnail_width, $thumbnail_height, $width, $height);
 
-		if (!empty($this->config['images_height_width']) || ($thumbnail_height > $thumbnail_width))
+		if ($this->config['images_height_width'] || $thumbnail_height > $thumbnail_width)
 		{
 			$thumbnail = imagecreatetruecolor($thumb_width, $thumb_height);
 			imagecopy($thumbnail, $thumbnail2, 0, 0, $new_left, $new_top, $thumb_width, $thumb_height);
+			imagedestroy($thumbnail2);
 		}
 		else
 		{
