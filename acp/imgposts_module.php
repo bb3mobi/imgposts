@@ -16,7 +16,7 @@ class imgposts_module
 	function main($id, $mode)
 	{
 		global $config, $phpbb_root_path, $user, $template, $php_ext, $db, $auth, $request, $phpbb_log;
-		$mode = request_var('mode', '');
+
 		$phpbb_ext_kb = new \bb3mobi\imgposts\core\helper($template, $phpbb_log, $config, $user, $auth, $db, $phpbb_root_path, $php_ext);
 
 		$this->page_title = 'ACP_IMG_FROM_POSTS';
@@ -24,35 +24,35 @@ class imgposts_module
 
 		add_form_key('bb3mobi/imgposts');
 
-		if($mode == 'manage_imgposts')
+		$mode = request_var('mode', '');
+
+		if ($mode == 'manage_imgposts')
 		{
 			// Manage thumbs (c) Sheer
 			$forum_id	= $request->variable('forum_id', 0);
 			$num		= $request->variable('num', $config['last_images_attachment_count']);
-			$forum_list = make_forum_select(false, false, true, true, true, false, true);
+			$forum_list	= make_forum_select(false, false, true, true, true, false, true);
 			$s_forum_options = '';
-			foreach($forum_list as $key => $value)
+			foreach ($forum_list as $key => $value)
 			{
 				$s_forum_options .='<option value="' . $value['forum_id'] . '" ' . (($value['disabled']) ? ' disabled="disabled" class="disabled-option"' : '') . '>' . $value['padding'] . $value['forum_name'] . '</option value>';
 			}
 
 			$template->assign_vars(array(
-				'S_SELECT_FORUM'		=> true,
-				'S_FORUM_OPTIONS'		=> $s_forum_options,
-				)
-			);
+				'S_SELECT_FORUM'	=> true,
+				'S_FORUM_OPTIONS'	=> $s_forum_options,
+			));
 
-			$create = $request->is_set_post('create');
-			if($create)
+			if ($request->is_set_post('create'))
 			{
-				if($forum_id)
+				if ($forum_id)
 				{
 					$result = $phpbb_ext_kb->last_images($forum_id, $num);
 					$thumbs = $result['counts'][0];
 					$created = $result['counts'][1];
 					$thumb_names = implode('<br />', $result['thumbs']);
 
-					if($created)
+					if ($created)
 					{
 						$message = sprintf($user->lang['THUMB_CREATED'], $thumbs, $created, $thumb_names);
 					}
@@ -70,9 +70,7 @@ class imgposts_module
 				}
 			}
 
-			$clear_all = $request->is_set_post('clear_all');
-			$clear_old = $request->is_set_post('clear_old');
-			if($clear_all)
+			if ($request->is_set_post('clear_all'))
 			{
 				if (!check_form_key('bb3mobi/imgposts'))
 				{
@@ -81,9 +79,9 @@ class imgposts_module
 
 				$handle = @opendir($phpbb_root_path . $config['images_new_path']);
 				$files  = array();
-				if($handle)
+				if ($handle)
 				{
-					while ($file = readdir ($handle))
+					while ($file = readdir($handle))
 					{
 						if ($file != '.' && $file != '..' && $file != '.htaccess' && $file != 'index.htm' && $file != 'index.html')
 						{
@@ -91,9 +89,9 @@ class imgposts_module
 						}
 					}
 					closedir($handle);
-					if(!empty($files))
+					if (!empty($files))
 					{
-						foreach($files as $del_file)
+						foreach ($files as $del_file)
 						{
 							@unlink($phpbb_root_path . $config['images_new_path'] . $del_file);
 						}
@@ -112,7 +110,8 @@ class imgposts_module
 				meta_refresh(3, append_sid($this->u_action));
 				trigger_error($message . adm_back_link($this->u_action), E_USER_WARNING);
 			}
-			if($clear_old)
+
+			if ($request->is_set_post('clear_old'))
 			{
 				if (!check_form_key('bb3mobi/imgposts'))
 				{
@@ -121,7 +120,7 @@ class imgposts_module
 
 				$result = $phpbb_ext_kb->clear_cache();
 				meta_refresh(3, append_sid($this->u_action));
-				if(!$result)
+				if (!$result)
 				{
 					trigger_error($user->lang['CLEAR_OLD_SUCCESS'] . adm_back_link($this->u_action));
 				}
@@ -147,14 +146,14 @@ class imgposts_module
 			}
 
 			$template->assign_vars(array(
-				'S_MANAGE'				=> true,
-				'L_TITLE'				=> $user->lang['ACP_IMG_MANAGE_POSTS'],
-				'L_TITLE_EXPLAIN'		=> $user->lang['ACP_IMG_MANAGE_POSTS_EXPLAIN'],
-				'PRUNE_DAYS'			=> round($config['images_prune_gc'] / 86400),
-				'S_CHECKED_DISABLE'		=> (!$config['imgposts_cron']) ? ' checked="checked" ' : '',
-				'S_CHECKED_ENABLE'		=> ($config['imgposts_cron']) ? ' checked="checked" ' : '',
-				'NUM'					=> $num,
-				'U_ACTION'				=> $this->u_action,
+				'S_MANAGE'			=> true,
+				'L_TITLE'			=> $user->lang['ACP_IMG_MANAGE_POSTS'],
+				'L_TITLE_EXPLAIN'	=> $user->lang['ACP_IMG_MANAGE_POSTS_EXPLAIN'],
+				'PRUNE_DAYS'		=> round($config['images_prune_gc'] / 86400),
+				'S_CHECKED_DISABLE'	=> (!$config['imgposts_cron']) ? ' checked="checked" ' : '',
+				'S_CHECKED_ENABLE'	=> ($config['imgposts_cron']) ? ' checked="checked" ' : '',
+				'NUM'				=> $num,
+				'U_ACTION'			=> $this->u_action,
 			));
 		}
 		else
@@ -184,10 +183,10 @@ class imgposts_module
 						'images_height_width'	=> array('lang' => 'IMAGES_HEIGHT_WIDTH',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
 					'legend3'	=> 'FIRST_IMAGES_TOPIC',
-						'first_images_from_topic'	=> array('lang' => 'FIRST_IMAGES_TOPIC_ON',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false),
-						'first_images_forum_ignore'	=> array('lang' => 'IMAGES_IGNORE_FORUM',		'validate' => 'string',		'type' => 'custom', 'method' => 'select_forums', 'explain' => true),
-						'first_images_size'			=> array('lang' => 'IMAGES_SIZE_IMG',			'validate' => 'int:30:200',	'type' => 'number:30:200', 'explain' => false, 'append' => ' ' . $user->lang['PIXEL']),
-						'first_images_float'		=> array('lang' => 'FIRST_IMAGES_FLOAT',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false),
+						'first_images_from_topic'	=> array('lang' => 'FIRST_IMAGES_TOPIC_ON',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false),
+						'first_images_forum_ignore'	=> array('lang' => 'IMAGES_IGNORE_FORUM',	'validate' => 'string',		'type' => 'custom', 'method' => 'select_forums', 'explain' => true),
+						'first_images_size'			=> array('lang' => 'IMAGES_SIZE_IMG',		'validate' => 'int:30:200',	'type' => 'number:30:200', 'explain' => false, 'append' => ' ' . $user->lang['PIXEL']),
+						'first_images_float'		=> array('lang' => 'FIRST_IMAGES_FLOAT',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false),
 					'legend4'	=> 'ACP_SUBMIT_CHANGES',
 				),
 			);
@@ -200,6 +199,22 @@ class imgposts_module
 			$this->new_config = $config;
 			$cfg_array = ($request->is_set('config')) ? utf8_normalize_nfc($request->variable('config', array('' => ''), true)) : $this->new_config;
 			$error = array();
+
+			// Forums Anvarable))
+			if ($request->is_set('last_images_attachment_ignore'))
+			{
+				$cfg_array['last_images_attachment_ignore'] = implode(',', $request->variable('last_images_attachment_ignore', array(0 => '')));
+			}
+
+			if ($request->is_set('last_images_img_ignore'))
+			{
+				$cfg_array['last_images_img_ignore'] = implode(',', $request->variable('last_images_img_ignore', array(0 => '')));
+			}
+
+			if ($request->is_set('first_images_forum_ignore'))
+			{
+				$cfg_array['first_images_forum_ignore'] = implode(',', $request->variable('first_images_forum_ignore', array(0 => '')));
+			}
 
 			// We validate the complete config if wished
 			validate_config_vars($display_vars['vars'], $cfg_array, $error);
@@ -226,21 +241,12 @@ class imgposts_module
 
 				if ($submit)
 				{
-					set_config($config_name, $config_value);
+					$config->set($config_name, $config_value);
 				}
 			}
 
 			if ($submit)
 			{
-				// POST Forums config && Anvar (bb3.mobi)
-				$config_ignore = array('last_images_attachment_ignore', 'last_images_img_ignore', 'first_images_forum_ignore');
-				foreach ($config_ignore as $forum_ignore)
-				{
-					$values = request_var($forum_ignore, array(0 => ''));
-					$news = implode(',', $values);
-					set_config($forum_ignore, $news);
-				}
-
 				$phpbb_log->add('admin', $user->data['user_id'], $user->data['session_ip'], 'LOG_IMG_FROM_POSTS_CONFIG', time(), false);
 				meta_refresh(3, append_sid($this->u_action));
 				trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
@@ -311,23 +317,22 @@ class imgposts_module
 		}
 	}
 
+	/**
+	* Select forums multiple
+	*/
 	function select_forums($value, $key)
 	{
-		// Select Forums function && Anvar (bb3.mobi)
-		global $user, $config;
-
 		$forum_list = make_forum_select(false, false, true, true, true, false, true);
 
-		$selected = array();
-		if(isset($config[$key]) && strlen($config[$key]) > 0)
-		{
-			$selected = explode(',', $config[$key]);
-		}
 		// Build forum options
+		$f_id_ary = explode(',', $value);
+
 		$s_forum_options = '<select id="' . $key . '" name="' . $key . '[]" multiple="multiple">';
 		foreach ($forum_list as $f_id => $f_row)
 		{
-			$s_forum_options .= '<option value="' . $f_id . '"' . ((in_array($f_id, $selected)) ? ' selected="selected"' : '') . (($f_row['disabled']) ? ' disabled="disabled" class="disabled-option"' : '') . '>' . $f_row['padding'] . $f_row['forum_name'] . '</option>';
+			$selected = ((in_array($f_id, $f_id_ary)) ? ' selected="selected"' : '');
+			$selected .= (($f_row['disabled']) ? ' disabled="disabled" class="disabled-option"' : '');
+			$s_forum_options .= '<option value="' . $f_id . '"' . $selected . '>' . $f_row['padding'] . $f_row['forum_name'] . '</option>';
 		}
 		$s_forum_options .= '</select>';
 
@@ -381,4 +386,3 @@ class imgposts_module
 		return $act_options;
 	}
 }
-

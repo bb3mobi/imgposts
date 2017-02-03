@@ -309,22 +309,23 @@ class helper
 		$image_type = $size[2];
 
 // If image size smaller then minimus thumbs size make copy of image -->
-		if ($resize >= $size[0] || $resize >= $size[1])
+		if ($resize > $size[0] || $resize > $size[1])
 		{
-			switch ($image_type)
-			{
-				case IMAGETYPE_JPEG:
-					$ext = 'jpg';
-				break;
-				case IMAGETYPE_GIF:
-					$ext = 'gif';
-				break;
-				case IMAGETYPE_PNG:
-					$ext = 'png';
-				break;
-				default:
-					return;
-			}
+			return;
+		}
+
+		switch ($image_type)
+		{
+			case IMAGETYPE_JPEG:
+				$ext = 'jpg';
+			break;
+			case IMAGETYPE_GIF:
+				$ext = 'gif';
+			break;
+			case IMAGETYPE_PNG:
+				$ext = 'png';
+			break;
+			default:
 			return;
 		}
 //<--
