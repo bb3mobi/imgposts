@@ -308,7 +308,6 @@ class helper
 		}
 		$image_type = $size[2];
 
-// If image size smaller then minimus thumbs size make copy of image -->
 		if ($resize > $size[0] || $resize > $size[1])
 		{
 			return;
@@ -317,32 +316,15 @@ class helper
 		switch ($image_type)
 		{
 			case IMAGETYPE_JPEG:
-				$ext = 'jpg';
+				$image = imagecreatefromjpeg($file);
 			break;
 			case IMAGETYPE_GIF:
-				$ext = 'gif';
+				$image = imagecreatefromgif($file);
 			break;
 			case IMAGETYPE_PNG:
-				$ext = 'png';
+				$image = imagecreatefrompng($file);
 			break;
 			default:
-			return;
-		}
-//<--
-		if ($image_type == IMAGETYPE_JPEG)
-		{
-			$image = imagecreatefromjpeg($file);
-		}
-		else if ($image_type == IMAGETYPE_GIF)
-		{
-			$image = imagecreatefromgif($file);
-		}
-		else if ($image_type == IMAGETYPE_PNG)
-		{
-			$image = imagecreatefrompng($file);
-		}
-		else
-		{
 			return;
 		}
 
@@ -385,19 +367,18 @@ class helper
 			imageString($thumbnail, 1, ($thumb_width/2)-(strlen($copy)*3-5), $thumb_height-10, $copy, $color);
 		}
 
-		if($image_type == IMAGETYPE_JPEG)
+		switch ($image_type)
 		{
-			imagejpeg($thumbnail, $thumbnail_file, 90);
+			case IMAGETYPE_JPEG:
+				imagejpeg($thumbnail, $thumbnail_file, 90);
+			break;
+			case IMAGETYPE_GIF:
+				imagegif($thumbnail, $thumbnail_file);
+			break;
+			case IMAGETYPE_PNG:
+				imagepng($thumbnail, $thumbnail_file, 0);
+			break;
 		}
-		else if($image_type == IMAGETYPE_GIF)
-		{
-			imagegif($thumbnail, $thumbnail_file);
-		}
-		else if ($image_type == IMAGETYPE_PNG)
-		{
-			imagepng($thumbnail, $thumbnail_file, 0);
-		}
-
 		imagedestroy($thumbnail);
 	}
 
