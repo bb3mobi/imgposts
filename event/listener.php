@@ -59,7 +59,7 @@ class listener implements EventSubscriberInterface
 
 	public function last_forum_images($event)
 	{
-		if ($this->config['last_images_attachment'])
+		if ($this->config['last_images_attachment'] == 2 || $this->config['last_images_attachment'] == 3)
 		{
 			$forum_id = 0;
 			$forum_data = $event['forum_data'];
@@ -68,7 +68,7 @@ class listener implements EventSubscriberInterface
 				$forum_id = isset($forum_data['forum_id']) ? $forum_data['forum_id'] : 0;
 			}
 
-			if (($this->config['images_attachment'] == 1 || $this->config['images_attachment'] == 2) && ($this->config['last_images_attachment'] == 2 || $this->config['last_images_attachment'] == 3))
+			if ($this->config['images_attachment'] == 1 || $this->config['images_attachment'] == 2)
 			{
 				$this->helper->last_images_attachment($forum_id);
 			}
@@ -234,7 +234,8 @@ class listener implements EventSubscriberInterface
 						FROM ' . ATTACHMENTS_TABLE . '
 						WHERE (mimetype = "image/jpeg" OR mimetype = "image/png" OR mimetype = "image/gif")
 							AND ' . $this->db->sql_in_set('topic_id', $topic_ids) . '
-						GROUP BY post_msg_id ASC';
+						GROUP BY topic_id
+						ORDER BY post_msg_id ASC';
 					$result = $this->db->sql_query($sql);
 
 					while($attach = $this->db->sql_fetchrow($result))
@@ -247,7 +248,6 @@ class listener implements EventSubscriberInterface
 						}
 						if (file_exists($this->phpbb_root_path . $thumbnail_file))
 						{
-							$this->thumb_file[$attach['topic_id']] = $thumbnail_file;
 							$ar[$attach['topic_id']] = $thumbnail_file;
 						}
 					}
